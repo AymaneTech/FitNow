@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\RegisterUserAction;
-use App\Actions\UserLoginAction;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserAuthService;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
 class UserAuthController extends Controller
 {
-    public function __construct(public UserAuthService $userAuthService){}
+    public function __construct(public UserAuthService $userAuthService)
+    {
+    }
 
     public function register(UserRegisterRequest $request): JsonResponse
     {
@@ -22,7 +23,11 @@ class UserAuthController extends Controller
 
     public function login(UserLoginRequest $request)
     {
-        $token = $this->userAuthService->login($request);
+        try {
+            $token = $this->userAuthService->login($request);
+        }catch (\Exception $e){
+            return response()->json(["message" => "user not found", 200]);
+        }
         return response()->json(["message" => $token, 200]);
     }
 }

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string("height");
             $table->string("weight");
-//            this json gonna handle info like : chest size, waist size
+//            this json column gonna handle info like : chest size, waist size
             $table->json("measurements");
-//             and this gonna handle info like : workout duration, number of reps, distance covered, etc.
+//             and this column gonna handle info like : workout duration, number of reps, distance covered, etc.
             $table->json("performance");
             $table->foreignId("user_id")
                 ->constrained("users");

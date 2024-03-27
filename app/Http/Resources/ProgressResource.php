@@ -15,11 +15,11 @@ class ProgressResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "height" => $request->height,
-            "weight" => $request->weight,
-            "status" => $request->status,
-            "performance" => $request->performance,
-            "measurements" => $request->measurements,
+            "height" => $this->height,
+            "weight" => $this->weight,
+            "status" => $this->status,
+            "performance" => json_decode($this->performance),
+            "measurements" => json_decode($this->measurements),
         ];
     }
 }

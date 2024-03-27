@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserAuthService;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
 class UserAuthController extends BaseController
 {
     public function __construct(public UserAuthService $userAuthService)
-    {
-    }
+    {}
 
     public function register(UserRegisterRequest $request): JsonResponse
     {
         $token = $this->userAuthService->register($request->validated());
-
         return $this->sendResponse("user registered successfully",  $token);
     }
 

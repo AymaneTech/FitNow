@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,7 +20,8 @@ return new class extends Migration
 //             and this column gonna handle info like : workout duration, number of reps, distance covered, etc.
             $table->json("performance");
             $table->foreignId("user_id")
-                ->constrained("users");
+                ->constrained("users")
+                ->cascadeOnDelete();
             $table->string("status")->default(Status::UNCOMPLETED->value);
             $table->timestamps();
         });

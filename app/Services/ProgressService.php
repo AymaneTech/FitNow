@@ -18,7 +18,6 @@ class ProgressService implements ServiceInterface
     public function show(Progress $progress)
     {
         $this->isHisProgress($progress->user_id);
-
         return (new ProgressResource($progress));
     }
 
@@ -50,7 +49,7 @@ class ProgressService implements ServiceInterface
         return $progress;
     }
 
-    private function isHisProgress($id): bool
+    private function isHisProgress($id)
     {
         if ($id !== auth("sanctum")->id()) {
             return false;

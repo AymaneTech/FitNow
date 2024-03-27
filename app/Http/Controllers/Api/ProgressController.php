@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProgressRequest;
-use App\Http\Resources\ProgressResource;
 use App\Models\Progress;
 use App\Services\ProgressService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Sanctum\PersonalAccessToken;
 
 class ProgressController extends BaseController
 {
@@ -21,7 +18,7 @@ class ProgressController extends BaseController
     public function index()
     {
         $progress = $this->progressService->get();
-        return $this->sendResponse($progress, "user progress list");
+        return $this->sendResponse("user progress list",$progress);
     }
 
     /**

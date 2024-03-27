@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProgressController;
-use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\Api\ProgressController;
+use App\Http\Controllers\Api\UserAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

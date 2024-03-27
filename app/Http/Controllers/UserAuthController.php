@@ -8,7 +8,7 @@ use App\Services\UserAuthService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
-class UserAuthController extends Controller
+class UserAuthController extends BaseController
 {
     public function __construct(public UserAuthService $userAuthService)
     {
@@ -18,7 +18,7 @@ class UserAuthController extends Controller
     {
         $token = $this->userAuthService->register($request->validated());
 
-        return response()->json(["message" => $token, 200]);
+        return $this->sendResponse("user registered successfully",  $token);
     }
 
     public function login(UserLoginRequest $request)
@@ -26,8 +26,8 @@ class UserAuthController extends Controller
         try {
             $token = $this->userAuthService->login($request);
         }catch (\Exception $e){
-            return response()->json(["message" => "user not found", 200]);
+            return $this->sendError("user not found");
         }
-        return response()->json(["message" => $token, 200]);
+        return $this->sendResponse("user logged ",$token);
     }
 }

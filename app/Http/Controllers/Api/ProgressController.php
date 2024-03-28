@@ -68,7 +68,7 @@ class ProgressController extends BaseController
      */
     public function destroy(Progress $progress)
     {
-        $progress = $this->progressService->delete($progress);
+        $progress = $this->progressService-> delete($progress);
         if(! $progress){
             return $this->sendError(error: "this progress is not yours",code: 403 );
         }

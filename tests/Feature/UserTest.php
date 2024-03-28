@@ -8,9 +8,6 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
     public function testUserDuplication(): void
     {
         $user1 = User::make([
@@ -24,20 +21,6 @@ class UserTest extends TestCase
 
         $this->assertTrue($user1->email != $user2->email);
     }
-
-//    public function testRegisterUser()
-//    {
-//        $data = [
-//            "name" => "aymane",
-//            "email" => "elmainiaymane@gmail.com",
-//            "password" => "password",
-//            "password_confirmation" => "password"
-//        ];
-//        $response = $this->post("api/register", $data);
-//
-//        $response->assertStatus(200);
-//
-//    }
     public function testUserRegister()
     {
         $userData = [

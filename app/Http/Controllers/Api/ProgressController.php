@@ -40,7 +40,7 @@ class ProgressController extends BaseController
     {
         $progress = $this->progressService->show($progress);
         if(! $progress){
-            return $this->sendError("this progress is not yours");
+            return $this->sendError(error:"this progress is not yours", code: 403);
         }
         return $this->sendResponse($progress, "success");
     }
@@ -52,16 +52,16 @@ class ProgressController extends BaseController
     {
         $validatedData =  $request->validated();
         $this->progressService->update($validatedData, $progress);
-        return $this->sendResponse("progress updated successfully");
+        return $this->sendResponse(message:"progress updated successfully");
     }
 
     public function toggleStatus(Progress $progress)
     {
         $progress = $this->progressService->toggleStatus($progress);
         if(! $progress){
-            return $this->sendError("this progress is not yours");
+            return $this->sendError(error:"this progress is not yours",code: 403);
         }
-        return $this->sendResponse("status changes to ".$progress->status);
+        return $this->sendResponse(message: "status changes to ".$progress->status);
     }
     /**
      * Remove the specified resource from storage.
@@ -70,7 +70,7 @@ class ProgressController extends BaseController
     {
         $progress = $this->progressService->delete($progress);
         if(! $progress){
-            return $this->sendError("this progress is not yours");
+            return $this->sendError(error: "this progress is not yours",code: 403 );
         }
         return $this->sendResponse("progress deleted successfully");
     }

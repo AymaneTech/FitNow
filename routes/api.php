@@ -15,5 +15,5 @@ Route::post('logout', [UserAuthController::class, 'logout'])
     ->middleware('auth:sanctum');
 Route::middleware("auth:sanctum")->group(function () {
     Route::resource("progress", ProgressController::class)->except("create", "edit");
-    Route::get("progress/{progress}/status", [ProgressController::class, "toggleStatus"]);
+    Route::patch("progress/{progress}/status", [ProgressController::class, "toggleStatus"]);
 });

@@ -36,6 +36,7 @@ class ProgressService implements ServiceInterface
     public function delete(Progress $progress)
     {
         $this->isHisProgress($progress->user_id);
+        $progress->delete();
         return true;
     }
 

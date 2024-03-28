@@ -7,6 +7,7 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserAuthService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class UserAuthController extends BaseController
 {
@@ -27,5 +28,11 @@ class UserAuthController extends BaseController
             return $this->sendError("user not found");
         }
         return $this->sendResponse("user logged ",$token);
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->user("sanctum")->tokens()->delete();
+        return $this->sendResponse("logout !");
     }
 }
